@@ -1,0 +1,32 @@
+import numpy as np
+
+# First pattern
+x1 = np.array([1, 1, 1, -1, 1, -1, 1, 1, 1])
+
+# Second pattern
+x2 = np.array([1, 1, 1, 1, -1, 1, 1, 1, 1])
+
+# Initialize bias value b=0
+# Define target
+y = np.array([1, -1])
+
+wt_old = np.zeros((9,), dtype=int)
+wt_new = np.zeros((9,), dtype=int)
+bias = 0
+
+print("First input with target = 1")
+for i in range(0, 9):
+    wt_old[i] = wt_old[i] + x1[i] * y[0]
+wt_new = wt_old
+bias += y[0]
+
+print("New weights =", wt_new)
+print("Bias value =", bias)
+
+print("\nSecond input with target = -1")
+for i in range(0, 9):
+    wt_new[i] = wt_old[i] + x2[i] * y[1]
+bias += y[1]
+
+print("New weights =", wt_new)
+print("Bias value =", bias)

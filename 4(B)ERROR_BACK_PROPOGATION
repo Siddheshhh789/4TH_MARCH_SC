@@ -1,0 +1,40 @@
+import math
+
+# Input parameters
+a0 = -1
+t = -1
+w10 = float(input("Enter weight for the first neuron: "))
+b10 = float(input("Enter bias for the first neuron: "))
+
+w20 = float(input("Enter weight for the second neuron: "))
+b20 = float(input("Enter bias for the second neuron: "))
+c = float(input("Enter learning coefficient: "))
+
+# Calculate the net input and activation for the first neuron
+n1 = w10 * a0 + b10
+a1 = math.tanh(n1)
+
+# Calculate the net input and activation for the second neuron
+n2 = w20 * a1 + b20
+a2 = math.tanh(n2)
+
+# Compute the error
+e = t - a2
+
+# Compute the deltas for the second neuron
+s2 = -2 * (1 - a2 * a2) * e
+
+# Compute the delta for the first neuron
+s1 = (1 - a1 * a1) * w20 * s2
+
+# Update weights and biases
+w21 = w20 - c * s2 * a1
+w11 = w10 - c * s1 * a0
+b21 = b20 - c * s2
+b11 = b10 - c * s1
+
+# Print the updated weights and biases
+print("The updated weight of the first neuron w11 =", w11)
+print("The updated weight of the second neuron w21 =", w21)
+print("The updated bias of the first neuron b11 =", b11)
+print("The updated bias of the second neuron b21 =", b21)
